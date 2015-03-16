@@ -40,14 +40,12 @@ public class MainActivity extends FragmentActivity
 		showDrawerButton = (Button) findViewById(R.id.show_drawer_btn);
 		fragments = new Fragment[3];
 
-		// 因为ActionBar的menu不能很好的满足自己要求，所以干脆不要了
 		getActionBar().hide();
 		initDrawerView();
 	}
 
 	private void initDrawerView()
 	{
-		// 抽屉菜单中的菜单项名称和图标。
 		String[] navDrawerItemsTitles = getResources().getStringArray(R.array.nav_drawer_items);
 		TypedArray navDrawerItemsIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons);
 

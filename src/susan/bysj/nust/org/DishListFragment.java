@@ -26,14 +26,14 @@ import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
 /**
  * @author Susan
- * ¼ÇÓÚ2015Äê3ÔÂ12ÈÕ
- * 1. fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit() »áµ÷ÓÃ  onCreateView£¬ËùÒÔ³õÊ¼»¯Êı¾İ»¹ÊÇ·ÅÔÚ¹¹Ôìº¯ÊıÖĞ±È½ÏºÃ
- * 2. ´´½¨fragmentµÄÊ±ºò£¬¸Ğ¾õÆÁÄ»²¢²»ÊÇÌØ±ğÁ÷³©£¬»áÉÁÒ»ÏÂ£¬²Â²âÔ­Òò£ºa.android Õâ·½Ãæ²»ĞĞ;b.ÊÖ»ú²»ĞĞ;c,PullToRefreshListFragment²»ĞĞ¡£ÔİÊ±²»×öÓÅ»¯ÁË
- * 3. Ê¹ÓÃ http://blog.csdn.net/ljtyzhr/article/details/40736525 ·½·¨£¬ÓÃ  private View rootView; »º´æFragment view, È¥µôonDestroyView£¬¶ÔÎÊÌâ2ºÃÒ»Ğ©
+ * è®°äº2015å¹´3æœˆ12æ—¥
+ * 1. fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit() ä¼šè°ƒç”¨  onCreateViewï¼Œæ‰€ä»¥åˆå§‹åŒ–æ•°æ®è¿˜æ˜¯æ”¾åœ¨æ„é€ å‡½æ•°ä¸­æ¯”è¾ƒå¥½
+ * 2. åˆ›å»ºfragmentçš„æ—¶å€™ï¼Œæ„Ÿè§‰å±å¹•å¹¶ä¸æ˜¯ç‰¹åˆ«æµç•…ï¼Œä¼šé—ªä¸€ä¸‹ï¼ŒçŒœæµ‹åŸå› ï¼ša.android è¿™æ–¹é¢ä¸è¡Œ;b.æ‰‹æœºä¸è¡Œ;c,PullToRefreshListFragmentä¸è¡Œã€‚æš‚æ—¶ä¸åšä¼˜åŒ–äº†
+ * 3. ä½¿ç”¨ http://blog.csdn.net/ljtyzhr/article/details/40736525 æ–¹æ³•ï¼Œç”¨  private View rootView; ç¼“å­˜Fragment view, å»æ‰onDestroyViewï¼Œå¯¹é—®é¢˜2å¥½ä¸€äº›
  */
 
 /**
- * @author Susan ²Ëµ¥ÁĞ±í
+ * @author Susan èœå•åˆ—è¡¨
  */
 @SuppressLint("NewApi")
 public class DishListFragment extends Fragment implements OnRefreshListener<ListView>

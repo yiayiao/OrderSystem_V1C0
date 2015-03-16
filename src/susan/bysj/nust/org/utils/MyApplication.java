@@ -1,4 +1,4 @@
-package susan.bysj.njust.org.utils;
+package susan.bysj.nust.org.utils;
 
 import android.app.Application;
 
