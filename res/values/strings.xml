@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">开心点餐</string>
+    <string name="dish_image">菜品图例</string>
+
+    <string-array name="nav_drawer_items">
+        <item>美味佳肴</item>
+        <item>您的订单</item>
+        <item>关于我们</item>
+    </string-array>
+
+    <array name="nav_drawer_icons">
+        <item>@drawable/ic_food</item>
+        <item>@drawable/ic_order</item>
+        <item>@drawable/ic_cook</item>
+    </array>
+    
+    <string name="desc_list_item_icon">Item Icon</string>
+
+</resources>
