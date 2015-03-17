@@ -45,3 +45,4 @@ Temporary Items
 
 # java class files
 *.class
+bin*

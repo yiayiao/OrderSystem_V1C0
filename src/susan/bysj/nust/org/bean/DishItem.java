@@ -18,8 +18,6 @@ public class DishItem
 		this.dishPrice = dishPrice;
 		this.dishDesc = dishDesc;
 	}
-	
-	
 
 	public String getDishName()
 	{
