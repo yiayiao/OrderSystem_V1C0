@@ -1,5 +1,10 @@
 package susan.bysj.nust.org.bean;
 
+/**
+ * dish_type：菜品类型表
+ * 
+ * @author Susan
+ */
 public class DishType
 {
 	private int dishTypeId;

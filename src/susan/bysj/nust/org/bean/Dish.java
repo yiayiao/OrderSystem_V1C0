@@ -19,6 +19,9 @@ public class Dish
 
 	private String detail;
 
+	/**
+	 * 库存数量，-1：不限；
+	 */
 	private int num;
 
 	/**
@@ -31,6 +34,9 @@ public class Dish
 	 */
 	private String picUrl;
 
+	/**
+	 * 菜品在本地的路径
+	 */
 	private String picLocalUrl;
 
 	/**
