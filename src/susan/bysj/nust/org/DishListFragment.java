@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import susan.bysj.nust.org.adapter.DishItemArrayAdapter;
-import susan.bysj.nust.org.bean.DishItem;
+import susan.bysj.nust.org.bean.Dish;
 import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.content.Intent;
@@ -21,7 +21,7 @@ import android.widget.ListView;
 public class DishListFragment extends Fragment
 {
 	private ListView dishList;
-	private List<DishItem> dishItems;
+	private List<Dish> dishItems;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -34,12 +34,13 @@ public class DishListFragment extends Fragment
 
 	public void init()
 	{
-		this.dishItems = new LinkedList<DishItem>();
+		this.dishItems = new LinkedList<Dish>();
 		dishItems.add(testGenerateDishItem());
 		dishItems.add(testGenerateDishItem());
 		dishItems.add(testGenerateDishItem());
 
-		DishItemArrayAdapter adapter = new DishItemArrayAdapter(this.getActivity().getApplicationContext(), R.layout.item_list_dish, dishItems);
+		DishItemArrayAdapter adapter = new DishItemArrayAdapter(this.getActivity().getApplicationContext(), R.layout.adapter_dish_item, dishItems);
+
 		dishList.setAdapter(adapter);
 		dishList.setOnItemClickListener(new OnItemClickListener()
 		{
@@ -54,9 +55,9 @@ public class DishListFragment extends Fragment
 		});
 	}
 
-	private DishItem testGenerateDishItem()
+	private Dish testGenerateDishItem()
 	{
-		DishItem dishItem = new DishItem("haha", "xixi", "nono");
+		Dish dishItem = new Dish("haha", "xixi", 5.5f);
 
 		return dishItem;
 	}

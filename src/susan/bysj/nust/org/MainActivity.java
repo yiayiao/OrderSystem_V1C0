@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import susan.bysj.nust.org.adapter.NavDrawerItemAdapter;
-import susan.bysj.nust.org.bean.NavDrawerItem;
+import susan.bysj.nust.org.bean.model.NavDrawerItem;
 import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -38,6 +38,7 @@ public class MainActivity extends FragmentActivity
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
 		showDrawerButton = (Button) findViewById(R.id.show_drawer_btn);
+		showDrawerButton.getBackground().setAlpha(120);
 		fragments = new Fragment[3];
 
 		getActionBar().hide();

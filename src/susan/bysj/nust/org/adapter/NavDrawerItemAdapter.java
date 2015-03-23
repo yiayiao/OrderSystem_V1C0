@@ -3,7 +3,7 @@ package susan.bysj.nust.org.adapter;
 import java.util.List;
 
 import susan.bysj.nust.org.R;
-import susan.bysj.nust.org.bean.NavDrawerItem;
+import susan.bysj.nust.org.bean.model.NavDrawerItem;
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -49,7 +49,7 @@ public class NavDrawerItemAdapter extends BaseAdapter
 		if (convertView == null)
 		{
 			LayoutInflater mInflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-			convertView = mInflater.inflate(R.layout.item_list_drawer, null);
+			convertView = mInflater.inflate(R.layout.adapter_drawer_item, null);
 		}
 
 		ImageView imgIcon = (ImageView) convertView.findViewById(R.id.icon);
