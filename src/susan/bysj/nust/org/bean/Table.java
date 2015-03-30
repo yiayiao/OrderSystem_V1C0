@@ -1,7 +1,14 @@
 package susan.bysj.nust.org.bean;
 
-public class Table
+import net.tsz.afinal.annotation.sqlite.Id;
+
+public class Table implements IGetVersionAndId
 {
+	@Id(column = "id")
+	private int id;
+
+	private String version;
+
 	private int tableId;
 
 	/**
@@ -19,6 +26,11 @@ public class Table
 	private int state;
 
 	private String bz;
+
+	public int getServerId()
+	{
+		return tableId;
+	}
 
 	public int getTableId()
 	{
@@ -78,6 +90,26 @@ public class Table
 	public void setBz(String bz)
 	{
 		this.bz = bz;
+	}
+
+	public String getVersion()
+	{
+		return version;
+	}
+
+	public void setVersion(String version)
+	{
+		this.version = version;
+	}
+
+	public int getId()
+	{
+		return id;
+	}
+
+	public void setId(int id)
+	{
+		this.id = id;
 	}
 
 }

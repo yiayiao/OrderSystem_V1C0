@@ -9,5 +9,6 @@
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="D:/android02/workspace/appcompat_v7_2/bin"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="libs/afinal_0.5_bin.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

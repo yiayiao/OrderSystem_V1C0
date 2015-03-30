@@ -1,14 +1,26 @@
 package susan.bysj.nust.org.bean;
 
+import net.tsz.afinal.annotation.sqlite.Id;
+import net.tsz.afinal.annotation.sqlite.Table;
+
 /**
  * dish_size：菜品尺寸表，如大份、中份、小份；
  * 
  * @author Susan
  */
-public class DishSize
-{
+@Table(name = "dish_size")
+public class DishSize implements IGetVersionAndId
+{ 
+	@Id(column = "id")
+	private int id;
+
 	private int dishSizeId;
 
+	private String version;
+
+	/**
+	 * 对应一个Dish在服务器端的id dishId
+	 */
 	private int dishId;
 
 	private String sizeName;
@@ -16,6 +28,11 @@ public class DishSize
 	private float oldPrice;
 
 	private float nowPrice;
+
+	public int getServerId()
+	{
+		return dishSizeId;
+	}
 
 	public int getDishSizeId()
 	{
@@ -65,6 +82,26 @@ public class DishSize
 	public void setNowPrice(float nowPrice)
 	{
 		this.nowPrice = nowPrice;
+	}
+
+	public String getVersion()
+	{
+		return version;
+	}
+
+	public void setVersion(String version)
+	{
+		this.version = version;
+	}
+
+	public int getId()
+	{
+		return id;
+	}
+
+	public void setId(int id)
+	{
+		this.id = id;
 	}
 
 }

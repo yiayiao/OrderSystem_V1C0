@@ -1,5 +1,10 @@
 package susan.bysj.nust.org.bean;
 
+/**
+ * 订单，在客户端生成，不需要与服务器端同步
+ * 
+ * @author Susan
+ */
 public class Order
 {
 	private int orderId;
@@ -18,7 +23,7 @@ public class Order
 	private String orderTime;
 
 	/**
-	 * 结算时间，格式化的日期字符串，'yyyyMMddhh24mmss'		
+	 * 结算时间，格式化的日期字符串，'yyyyMMddhh24mmss'
 	 */
 	private String settleTime;
 

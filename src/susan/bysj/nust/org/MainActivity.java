@@ -5,6 +5,7 @@ import java.util.List;
 
 import susan.bysj.nust.org.adapter.NavDrawerItemAdapter;
 import susan.bysj.nust.org.bean.model.NavDrawerItem;
+import susan.bysj.nust.org.utils.Updater;
 import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -42,7 +43,15 @@ public class MainActivity extends FragmentActivity
 		fragments = new Fragment[3];
 
 		getActionBar().hide();
+
+		// 更新菜品信息
+		new Updater(this).update();
 		initDrawerView();
+	}
+
+	public void refresh()
+	{
+		((DishListFragment) this.fragments[0]).refreshDishList();
 	}
 
 	private void initDrawerView()
@@ -92,13 +101,13 @@ public class MainActivity extends FragmentActivity
 
 	private void displayView(int position)
 	{
-		if(position == positionNow)
+		if (position == positionNow)
 		{
 			mDrawerLayout.closeDrawer(mDrawerList);
-			return ;
+			return;
 		}
 		positionNow = position;
-		
+
 		Fragment fragment = getFragment(position);
 		if (fragment != null)
 		{
@@ -117,11 +126,11 @@ public class MainActivity extends FragmentActivity
 
 	private Fragment getFragment(int position)
 	{
-		if(this.fragments[position] != null)
+		if (this.fragments[position] != null)
 		{
 			return this.fragments[position];
 		}
-		
+
 		switch (position)
 		{
 			case 0:

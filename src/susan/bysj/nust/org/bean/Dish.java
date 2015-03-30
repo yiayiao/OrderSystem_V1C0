@@ -1,8 +1,23 @@
 package susan.bysj.nust.org.bean;
 
-public class Dish
+import net.tsz.afinal.annotation.sqlite.Id;
+import net.tsz.afinal.annotation.sqlite.Table;
+
+@Table(name = "dish")
+public class Dish implements IGetVersionAndId
 {
+	@Id(column = "id")
+	private int id;
+
+	/**
+	 * 该bean在服务器端的Id
+	 */
 	private int dishId;
+
+	/**
+	 * 如果该version与服务器上是不一致的，则意味着这是需要跟新的
+	 */
+	private String version;
 
 	private int dishTypeId;
 
@@ -49,11 +64,20 @@ public class Dish
 	 */
 	private String bz;
 
+	public Dish()
+	{
+	}
+
 	public Dish(String name, String desc, float price)
 	{
 		this.dishName = name;
 		this.detail = desc;
 		this.nowPrice = price;
+	}
+
+	public int getServerId()
+	{
+		return dishId;
 	}
 
 	public int getDishId()
@@ -184,5 +208,25 @@ public class Dish
 	public void setBz(String bz)
 	{
 		this.bz = bz;
+	}
+
+	public int getId()
+	{
+		return id;
+	}
+
+	public void setId(int id)
+	{
+		this.id = id;
+	}
+
+	public String getVersion()
+	{
+		return version;
+	}
+
+	public void setVersion(String version)
+	{
+		this.version = version;
 	}
 }

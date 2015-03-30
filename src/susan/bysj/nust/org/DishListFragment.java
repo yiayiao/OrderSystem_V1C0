@@ -1,10 +1,11 @@
 package susan.bysj.nust.org;
 
-import java.util.LinkedList;
 import java.util.List;
 
+import net.tsz.afinal.FinalDb;
 import susan.bysj.nust.org.adapter.DishItemArrayAdapter;
 import susan.bysj.nust.org.bean.Dish;
+import susan.bysj.nust.org.utils.MyApplication;
 import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.content.Intent;
@@ -21,25 +22,25 @@ import android.widget.ListView;
 public class DishListFragment extends Fragment
 {
 	private ListView dishList;
+	private FinalDb finalDb;
 	private List<Dish> dishItems;
+	private DishItemArrayAdapter adapter;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
 		View rootView = inflater.inflate(R.layout.fragment_dish, container, false);
+		this.finalDb = ((MyApplication) getActivity().getApplication()).getFinalDb();
 		this.dishList = (ListView) rootView.findViewById(R.id.dish_list);
-		init();
+		initDishList();
 		return rootView;
 	}
 
-	public void init()
+	private void initDishList()
 	{
-		this.dishItems = new LinkedList<Dish>();
-		dishItems.add(testGenerateDishItem());
-		dishItems.add(testGenerateDishItem());
-		dishItems.add(testGenerateDishItem());
-
-		DishItemArrayAdapter adapter = new DishItemArrayAdapter(this.getActivity().getApplicationContext(), R.layout.adapter_dish_item, dishItems);
+		this.dishItems = finalDb.findAll(Dish.class);
+		Log.d("OrderSystem", "############### now dish count : " + this.dishItems.size() + " ################");
+		adapter = new DishItemArrayAdapter(this.getActivity().getApplicationContext(), R.layout.adapter_dish_item, dishItems);
 
 		dishList.setAdapter(adapter);
 		dishList.setOnItemClickListener(new OnItemClickListener()
@@ -55,11 +56,19 @@ public class DishListFragment extends Fragment
 		});
 	}
 
-	private Dish testGenerateDishItem()
+	public void refreshDishList()
 	{
-		Dish dishItem = new Dish("haha", "xixi", 5.5f);
-
-		return dishItem;
+		if (adapter == null)
+		{
+			initDishList();
+		}
+		else
+		{
+			this.dishItems.clear();
+			this.dishItems.addAll(finalDb.findAll(Dish.class));
+			this.dishItems = finalDb.findAll(Dish.class);
+			Log.d("OrderSystem", "############### now dish count : " + this.dishItems.size() + " ################");
+			this.adapter.notifyDataSetChanged();
+		}
 	}
-
 }

@@ -1,10 +1,10 @@
 package susan.bysj.nust.org.bean;
 
 /**
- * @author Susan
+ * orders_dish：orders与dish的中间表，因为orders与dish是N:N的关系；在每一个终端，只保存当前的order与dish的对应关系
+ * 。 在客户端生成并传递到服务器端，不需要在启动时与服务器端同步
  * 
- *         orders_dish：orders与dish的中间表，因为orders与dish是N:N的关系；
- *         在每一个终端，只保存当前的order与dish的对应关系
+ * @author Susan
  */
 public class OrderDish
 {
