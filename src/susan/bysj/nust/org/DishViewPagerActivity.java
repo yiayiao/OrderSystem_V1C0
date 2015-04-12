@@ -1,42 +1,51 @@
 package susan.bysj.nust.org;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
+import net.tsz.afinal.FinalDb;
+import susan.bysj.nust.org.adapter.DishPriceAdapter;
+import susan.bysj.nust.org.adapter.DishTasteAdapter;
+import susan.bysj.nust.org.bean.Dish;
+import susan.bysj.nust.org.bean.DishSize;
+import susan.bysj.nust.org.bean.DishTaste;
+import susan.bysj.nust.org.utils.AsyncImageLoader;
+import susan.bysj.nust.org.utils.MyApplication;
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
-import android.text.Spannable;
-import android.text.SpannableStringBuilder;
-import android.text.style.ForegroundColorSpan;
-import android.text.style.ImageSpan;
-import android.text.style.RelativeSizeSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.webkit.WebView;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
-import android.widget.LinearLayout;
+import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 @SuppressLint("NewApi")
 public class DishViewPagerActivity extends Activity
 {
-	private ViewPager viewPager; // viewpager
+	private ViewPager viewPager;
 	private Button buttonBackHome;
+	private LayoutInflater mInflater;
+	private FinalDb finalDb;
+	private AsyncImageLoader asyncImageLoader;
+	private int lastSizeChoosed = -1;
+	private int lastTasteChoosed = -1;
 
-	// viewpager的标题
-	private PagerTabStrip pagerTabStrip;// 一个viewpager的指示器，效果就是一个横的粗的下划线
-	private List<View> viewList;// 把需要滑动的页卡添加到这个list中
-	private List<String> titleList;// viewpager的标题
+	// viewpager的标题, 一个viewpager的指示器，效果就是一个横的粗的下划线
+	private PagerTabStrip pagerTabStrip;
+
+	// 把需要滑动的页卡添加到这个list中
+	private List<View> viewList;
+	private List<Dish> dishList;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState)
@@ -44,6 +53,9 @@ public class DishViewPagerActivity extends Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_dish_viewpager);
 
+		finalDb = ((MyApplication) getApplication()).getFinalDb();
+		asyncImageLoader = ((MyApplication) getApplication()).getAsyncImageLoader();
+		mInflater = LayoutInflater.from(this);
 		viewPager = (ViewPager) findViewById(R.id.viewpager);
 		pagerTabStrip = (PagerTabStrip) findViewById(R.id.pagertab);
 		buttonBackHome = (Button) findViewById(R.id.back_home_btn);
@@ -54,79 +66,143 @@ public class DishViewPagerActivity extends Activity
 			@Override
 			public void onClick(View arg0)
 			{
-//				Intent intent = new Intent();
-//				intent.setClass(DishViewPagerActivity.this, MainActivity.class);
-//				startActivity(intent);
 				DishViewPagerActivity.this.finish();
 			}
 		});
 
 		getActionBar().hide();
-		initView();
+		int currentItem = this.getIntent().getExtras().getInt("currentItem");
+		initView(currentItem);
 	}
 
-	/*
-	 * 在这里需要说明一下，在上面的图片中我们看到了，PagerTabStrip，PagerTitleStrip，他们其实是viewpager的一个指示器，
-	 * 前者效果就是一个横的粗的下划线
-	 * ，后者用来显示各个页卡的标题，当然而这也可以共存。在使用他们的时候需要注意，看下面的布局文件，要在android.support
-	 * .v4.view.ViewPager里面添加
-	 * android.support.v4.view.PagerTabStrip以及android.support
-	 * .v4.view.PagerTitleStrip
+	private void initView(int currentItem)
+	{
+		pagerTabStrip.setTabIndicatorColor(getResources().getColor(R.color.red));
+		pagerTabStrip.setDrawFullUnderline(false);
+		pagerTabStrip.setTextSpacing(0);
+
+		dishList = finalDb.findAll(Dish.class);
+		viewList = new LinkedList<View>();
+		for (Dish dish : dishList)
+		{
+			viewList.add(generateView(dish));
+		}
+
+		PagerAdapter pagerAdapter = new MyPagerAdapter();
+		viewPager.setAdapter(pagerAdapter);
+		viewPager.setCurrentItem(currentItem);
+	}
+
+	/**
+	 * 初始化pageViewer中的每个page，即菜品详情页面
+	 * 
+	 * @param dish
 	 */
-
-	private LayoutInflater mInflater;
-
-	public class ViewPagerHolder
+	private View generateView(Dish dish)
 	{
-		private TextView mWarning;
-		private TextView mTitle;
-		private TextView mAuthor;
-		private TextView mData;
-		private WebView mContent;
-		private LinearLayout mpintLayout;
-	}
+		final ViewPagerHolder holder = new ViewPagerHolder();
+		View view = mInflater.inflate(R.layout.activity_dish_detail, null);
+		holder.dishPicBig = (ImageView) view.findViewById(R.id.dish_pic_big);
+		setBitmap(holder.dishPicBig, "https://www.baidu.com/img/bdlogo.png");
+		holder.dishDetailView = (TextView) view.findViewById(R.id.dish_detail);
+		holder.dishDetailView.setText(dish.getDetail());
+		holder.dishRecommandView = (ImageView) view.findViewById(R.id.dish_recommend);
+		if (dish.getRecommend() == 0)
+		{
+			holder.dishRecommandView.setVisibility(View.GONE);
+		}
 
-	private View setView()
-	{
-		// TODO Auto-generated method stub
-		// final ViewPagerHolder holder = new ViewPagerHolder();
-		View view = mInflater.inflate(R.layout.view_dish_page, null);
-		// holder.mTitle = (TextView) view.findViewById(R.id.m_name);
-		// holder.mAuthor = (TextView)
-		// view.findViewById(R.id.text_news_detail_author);
-		// holder.mData = (TextView)
-		// view.findViewById(R.id.text_news_detail_data);
-		// holder.mGallery = (Gallery) view.findViewById(R.id.gallery);
-		// holder.mGallery.setVisibility(View.GONE);
+		List<DishSize> dishSizeList = finalDb.findAllByWhere(DishSize.class, "dishId = " + dish.getDishId());
+		holder.dishPriceAdapter = new DishPriceAdapter(this, R.layout.adapter_dish_price, dishSizeList);
+		holder.dishPriceGridView = (GridView) view.findViewById(R.id.dish_price_view);
+		holder.dishPriceGridView.setAdapter(holder.dishPriceAdapter);
+		holder.dishPriceGridView.setOnItemClickListener(new OnItemClickListener()
+		{
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3)
+			{
+				if (lastSizeChoosed != arg2)
+				{
+					if (lastSizeChoosed >= 0)
+					{
+						changeSizeRadioImg(holder.dishPriceAdapter, lastSizeChoosed, false);
+					}
+					lastSizeChoosed = arg2;
+					changeSizeRadioImg(holder.dishPriceAdapter, arg2, true);
+				}
+			}
+		});
 
-		// holder.mContent = (WebView)
-		// view.findViewById(R.id.text_news_datails_content);
-		// holder.mContent.setBackgroundColor(Color.parseColor("#ebebeb"));
+		List<DishTaste> dishTasteList = finalDb.findAllByWhere(DishTaste.class, "dishId = " + dish.getDishId());
+		holder.dishTasteAdapter = new DishTasteAdapter(this, R.layout.adapter_dish_taste, dishTasteList);
+		holder.dishTasteGridView = (GridView) view.findViewById(R.id.dish_taste_view);
+		holder.dishTasteGridView.setAdapter(holder.dishTasteAdapter);
+		holder.dishTasteGridView.setOnItemClickListener(
+		new OnItemClickListener()
+		{
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3)
+			{
+				if (lastTasteChoosed != arg2)
+				{
+					if (lastTasteChoosed >= 0)
+					{
+						changeTasteRadioImg(holder.dishTasteAdapter, lastTasteChoosed, false);
+					}
+					lastTasteChoosed = arg2;
+					changeTasteRadioImg(holder.dishTasteAdapter, arg2, true);
+				}
+			}
+		});
 
 		return view;
 	}
 
-	private void initView()
+	private Bitmap setBitmap(final ImageView iv, String imgUrl)
 	{
-		mInflater = LayoutInflater.from(this);
+		// 下载图片，第二个参数是否缓存至内存中
+		asyncImageLoader.downloadImage(imgUrl, true/* false */, new AsyncImageLoader.ImageCallback()
+		{
+			@Override
+			public void onImageLoaded(Bitmap bitmap, String imageUrl)
+			{
+				if (bitmap != null)
+				{
+					iv.setImageBitmap(bitmap);
+				}
+				else
+				{
+					// 下载失败，设置默认图片
+				}
+			}
+		});
+		return null;
+	}
 
-		pagerTabStrip.setTabIndicatorColor(getResources().getColor(R.color.red));
-		// pagerTabStrip.setTextColor(getResources().getColor(R.color.darkGrey));
-		pagerTabStrip.setDrawFullUnderline(false);
-		pagerTabStrip.setTextSpacing(0);
+	private void changeTasteRadioImg(DishTasteAdapter adapter, int selectedItem, boolean choosed)
+	{
+		DishTaste dishTaste = adapter.getItem(selectedItem);
+		dishTaste.setChoosed(choosed);
+		adapter.notifyDataSetChanged();
+	}
 
-		viewList = new ArrayList<View>();// 将要分页显示的View装入数组中
-		viewList.add(setView());
-		viewList.add(setView());
-		viewList.add(setView());
+	private void changeSizeRadioImg(DishPriceAdapter dishPriceItemAdapter, int selectedItem, boolean choosed)
+	{
+		DishSize dishSize = dishPriceItemAdapter.getItem(selectedItem);
+		dishSize.setChoosed(choosed);
+		dishPriceItemAdapter.notifyDataSetChanged();
+	}
 
-		titleList = new ArrayList<String>();// 每个页面的Title数据
-		titleList.add("回锅肉");
-		titleList.add("鱼香肉丝");
-		titleList.add("酸菜鱼");
+	public class ViewPagerHolder
+	{
+		private ImageView dishPicBig;
+		private TextView dishDetailView;
+		private ImageView dishRecommandView;
+		private GridView dishPriceGridView;
+		private DishPriceAdapter dishPriceAdapter;
+		private GridView dishTasteGridView;
+		private DishTasteAdapter dishTasteAdapter;
 
-		PagerAdapter pagerAdapter = new MyPagerAdapter();
-		viewPager.setAdapter(pagerAdapter);
 	}
 
 	class MyPagerAdapter extends PagerAdapter
@@ -159,7 +235,7 @@ public class DishViewPagerActivity extends Activity
 		@Override
 		public CharSequence getPageTitle(int position)
 		{
-			return titleList.get(position);
+			return dishList.get(position).getDishName();
 		}
 
 		@Override

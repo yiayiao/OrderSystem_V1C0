@@ -7,6 +7,8 @@ public class MyApplication extends Application
 {
 	private FinalDb finalDb;// 数据库全局变量
 
+	private AsyncImageLoader asyncImageLoader;
+	
 	private String serverUrl = "http://localhost:8080/updateUrl";
 
 	public FinalDb getFinalDb()
@@ -28,5 +30,15 @@ public class MyApplication extends Application
 	{
 		this.serverUrl = serverUrl;
 	}
+
+	public AsyncImageLoader getAsyncImageLoader()
+    {
+	    return asyncImageLoader;
+    }
+
+	public void setAsyncImageLoader(AsyncImageLoader asyncImageLoader)
+    {
+	    this.asyncImageLoader = asyncImageLoader;
+    }
 
 }

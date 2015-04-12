@@ -5,6 +5,8 @@ import java.util.List;
 
 import susan.bysj.nust.org.adapter.NavDrawerItemAdapter;
 import susan.bysj.nust.org.bean.model.NavDrawerItem;
+import susan.bysj.nust.org.utils.AsyncImageLoader;
+import susan.bysj.nust.org.utils.MyApplication;
 import susan.bysj.nust.org.utils.Updater;
 import android.annotation.SuppressLint;
 import android.app.Fragment;
@@ -27,6 +29,7 @@ public class MainActivity extends FragmentActivity
 	private ListView mDrawerList;
 	private Fragment[] fragments;
 	private int positionNow = -1;
+	private MyApplication myApplication;
 
 	private Button showDrawerButton;
 
@@ -36,17 +39,30 @@ public class MainActivity extends FragmentActivity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+		myApplication = (MyApplication) getApplication();
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
 		showDrawerButton = (Button) findViewById(R.id.show_drawer_btn);
 		showDrawerButton.getBackground().setAlpha(120);
 		fragments = new Fragment[3];
-
 		getActionBar().hide();
 
 		// 更新菜品信息
 		new Updater(this).update();
 		initDrawerView();
+		initAsyncImageLoader();
+	}
+
+	private void initAsyncImageLoader()
+	{
+		AsyncImageLoader loader = new AsyncImageLoader(getApplicationContext());
+
+		// 将图片缓存至外部文件中
+		loader.setCache2File(true); // false
+
+		// 设置外部缓存文件夹
+		loader.setCachedDir(this.getCacheDir().getAbsolutePath());
+		myApplication.setAsyncImageLoader(loader);
 	}
 
 	public void refresh()

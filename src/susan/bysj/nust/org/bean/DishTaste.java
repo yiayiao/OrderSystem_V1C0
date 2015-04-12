@@ -20,7 +20,9 @@ public class DishTaste implements IGetVersionAndId
 
 	private int dishId;
 
-	private String tasteId;
+	private String taste;
+	
+	private boolean choosed;
 
 	public int getServerId()
 	{
@@ -47,14 +49,14 @@ public class DishTaste implements IGetVersionAndId
 		this.dishId = dishId;
 	}
 
-	public String getTasteId()
+	public String getTaste()
 	{
-		return tasteId;
+		return taste;
 	}
 
-	public void setTasteId(String tasteId)
+	public void setTaste(String taste)
 	{
-		this.tasteId = tasteId;
+		this.taste = taste;
 	}
 
 	public int getId()
@@ -76,5 +78,15 @@ public class DishTaste implements IGetVersionAndId
 	{
 		this.version = version;
 	}
+
+	public boolean isChoosed()
+    {
+	    return choosed;
+    }
+
+	public void setChoosed(boolean choosed)
+    {
+	    this.choosed = choosed;
+    }
 
 }

@@ -10,7 +10,7 @@ import net.tsz.afinal.annotation.sqlite.Table;
  */
 @Table(name = "dish_size")
 public class DishSize implements IGetVersionAndId
-{ 
+{
 	@Id(column = "id")
 	private int id;
 
@@ -28,6 +28,8 @@ public class DishSize implements IGetVersionAndId
 	private float oldPrice;
 
 	private float nowPrice;
+
+	private boolean choosed;
 
 	public int getServerId()
 	{
@@ -102,6 +104,21 @@ public class DishSize implements IGetVersionAndId
 	public void setId(int id)
 	{
 		this.id = id;
+	}
+
+	public boolean getChoosed()
+	{
+		return choosed;
+	}
+
+	public boolean isChoosed()
+	{
+		return choosed;
+	}
+
+	public void setChoosed(boolean choosed)
+	{
+		this.choosed = choosed;
 	}
 
 }

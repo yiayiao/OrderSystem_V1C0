@@ -15,18 +15,9 @@
         <item>@drawable/ic_order</item>
         <item>@drawable/ic_cook</item>
     </array>
-    
-    <string name="desc_list_item_icon">Item Icon</string>
-    
-    <!-- meal详细页面静态文字 -->
 
-     <string name="sssj">所属商家:</string>
-     <string name="jg">价格:</string>
-     <string name="zan">赞:</string>
-     <string name="cai">踩:</string>
-     <string name="pl">评论:</string>
-     <string name="srpl">请输入评论:</string>
-     <string name="plinfo">评论</string>
-     <string name="gm">购买</string>
+    <string name="desc_list_item_icon">Item Icon</string>
+    <string name="price">价格:</string>
+    <string name="taste">口味:</string>
 
 </resources>

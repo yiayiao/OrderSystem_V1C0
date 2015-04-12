@@ -50,6 +50,7 @@ public class DishListFragment extends Fragment
 			{
 				Intent intent = new Intent();
 				intent.setClass(getActivity(), DishViewPagerActivity.class);
+				intent.putExtra("currentItem", position);
 				getActivity().startActivity(intent);
 				Log.d("item on click", "position at : " + position);
 			}
