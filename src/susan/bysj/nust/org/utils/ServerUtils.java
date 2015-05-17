@@ -7,6 +7,7 @@ import java.util.List;
 import susan.bysj.nust.org.bean.Dish;
 import susan.bysj.nust.org.bean.DishSize;
 import susan.bysj.nust.org.bean.DishTaste;
+import susan.bysj.nust.org.bean.DishType;
 import susan.bysj.nust.org.bean.ServerItem;
 import android.util.Log;
 
@@ -54,6 +55,12 @@ public class ServerUtils
 			itemVersions.add(new ServerItem(8, "version02"));
 			itemVersions.add(new ServerItem(9, "version03"));
 		}
+		else if (theClass.getSimpleName().equals("DishType"))
+		{
+			itemVersions.add(new ServerItem(1, "version02"));
+			itemVersions.add(new ServerItem(2, "version03"));
+			itemVersions.add(new ServerItem(3, "version02"));
+		}
 
 		return itemVersions;
 	}
@@ -70,6 +77,7 @@ public class ServerUtils
 				dish.setDetail("非常好吃的一道川菜");
 				dish.setOldPrice(7f);
 				dish.setNowPrice(5.5f);
+				dish.setDishTypeId(3);
 			}
 			else if (serverId == 2)
 			{
@@ -79,6 +87,7 @@ public class ServerUtils
 				dish.setRecommend(1);
 				dish.setOldPrice(20f);
 				dish.setNowPrice(16f);
+				dish.setDishTypeId(3);
 			}
 			else if (serverId == 3)
 			{
@@ -86,6 +95,7 @@ public class ServerUtils
 				dish.setDishName("鱼香肉丝");
 				dish.setDetail("家常小炒，美味非凡");
 				dish.setNowPrice(8f);
+				dish.setDishTypeId(3);
 			}
 			return (T) dish;
 		}
@@ -172,9 +182,33 @@ public class ServerUtils
 				default:
 					break;
 			}
-			return (T)dishTaste; 
-		}
 
+			return (T) dishTaste;
+		}
+		else if (theClass.getSimpleName().equals("DishType"))
+		{
+			DishType dishType = new DishType();
+			dishType.setDishTypeId(serverId);
+			switch (serverId)
+			{
+				case 1:
+					dishType.setTypeName("糕点");
+				//	dishType.setDishTypeId(1);
+					break;
+				case 2:
+					dishType.setTypeName("汤羹");
+				//	dishType.setDishTypeId(2);
+					break;
+				case 3:
+					dishType.setTypeName("正菜");
+				//	dishType.setDishTypeId(3);
+					break;
+			}
+			
+			return (T)dishType; 
+		}
+		
+		
 		return null;
 	}
 

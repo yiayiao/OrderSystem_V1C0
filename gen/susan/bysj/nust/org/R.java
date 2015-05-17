@@ -15,10 +15,12 @@ public final class R {
         public static final int abc_slide_in_top=0x7f040003;
         public static final int abc_slide_out_bottom=0x7f040004;
         public static final int abc_slide_out_top=0x7f040005;
+        public static final int push_out=0x7f040006;
     }
     public static final class array {
-        public static final int nav_drawer_icons=0x7f0c0001;
+        public static final int nav_drawer_icons=0x7f0c0002;
         public static final int nav_drawer_items=0x7f0c0000;
+        public static final int plants_array=0x7f0c0001;
     }
     public static final class attr {
         /**  Custom divider drawable to use for elements in the action bar. 
@@ -798,27 +800,28 @@ containing a value of this type.
         public static final int abc_split_action_bar_is_narrow=0x7f060002;
     }
     public static final class color {
-        public static final int abc_search_url_text_holo=0x7f070012;
+        public static final int abc_search_url_text_holo=0x7f070013;
         public static final int abc_search_url_text_normal=0x7f070000;
         public static final int abc_search_url_text_pressed=0x7f070002;
         public static final int abc_search_url_text_selected=0x7f070001;
-        public static final int black=0x7f07000b;
-        /**  计数器 ？？？ 
+        /**  一些颜色 
          */
-        public static final int counter_text_bg=0x7f070009;
-        public static final int counter_text_color=0x7f07000a;
-        public static final int darkGrey=0x7f07000f;
-        public static final int dimGrey=0x7f070010;
+        public static final int black=0x7f07000c;
+        public static final int counter_text_bg=0x7f070007;
+        public static final int counter_text_color=0x7f070008;
+        public static final int darkGrey=0x7f070010;
+        public static final int dimGrey=0x7f070011;
+        public static final int dish_list_divider=0x7f07000b;
         public static final int drawer_background=0x7f070003;
         public static final int drawer_background_pressed=0x7f070005;
         public static final int drawer_divider=0x7f070004;
         public static final int drawer_item_title=0x7f070006;
-        public static final int gold=0x7f07000c;
-        public static final int lightGrey=0x7f07000d;
-        public static final int menu_background=0x7f070007;
-        public static final int pagerTab_background=0x7f070008;
-        public static final int red=0x7f07000e;
-        public static final int yellow=0x7f070011;
+        public static final int gold=0x7f07000d;
+        public static final int lightGrey=0x7f07000e;
+        public static final int menu_background=0x7f070009;
+        public static final int pagerTab_background=0x7f07000a;
+        public static final int red=0x7f07000f;
+        public static final int yellow=0x7f070012;
     }
     public static final class dimen {
         /**  Default height of an action bar. 
@@ -1014,13 +1017,16 @@ containing a value of this type.
         public static final int ic_back=0x7f020060;
         public static final int ic_cook=0x7f020061;
         public static final int ic_food=0x7f020062;
-        public static final int ic_home=0x7f020063;
-        public static final int ic_launcher=0x7f020064;
-        public static final int ic_menu=0x7f020065;
-        public static final int ic_order=0x7f020066;
-        public static final int ic_recommand=0x7f020067;
-        public static final int wallpaper=0x7f020068;
-        public static final int zan_button=0x7f020069;
+        public static final int ic_launcher=0x7f020063;
+        public static final int ic_menu=0x7f020064;
+        public static final int ic_order=0x7f020065;
+        public static final int ic_recommand=0x7f020066;
+        public static final int ic_spinner=0x7f020067;
+        public static final int ic_user=0x7f020068;
+        public static final int shopping_cart=0x7f020069;
+        public static final int textview_radius=0x7f02006a;
+        public static final int wallpaper=0x7f02006b;
+        public static final int zan_button=0x7f02006c;
     }
     public static final class id {
         public static final int action_bar=0x7f05001c;
@@ -1039,49 +1045,68 @@ containing a value of this type.
         public static final int back_home_btn=0x7f050043;
         public static final int beginning=0x7f050011;
         public static final int checkbox=0x7f05002d;
+        public static final int circle_progress_bar=0x7f050066;
         public static final int collapseActionView=0x7f05000d;
-        public static final int counter=0x7f050055;
+        public static final int contentTextView=0x7f050069;
+        public static final int counter=0x7f050064;
         public static final int default_activity_button=0x7f050028;
+        public static final int del_order_btn=0x7f05005c;
         public static final int dialog=0x7f05000e;
         public static final int disableHome=0x7f050008;
         public static final int dish_add_to_order=0x7f050042;
-        public static final int dish_desc=0x7f05004d;
+        public static final int dish_desc=0x7f05004f;
+        public static final int dish_desc_label=0x7f050053;
         public static final int dish_detail=0x7f05003f;
         public static final int dish_detail_layout=0x7f05003d;
-        public static final int dish_img=0x7f05004a;
-        public static final int dish_list=0x7f050056;
-        public static final int dish_name=0x7f05004b;
+        public static final int dish_img=0x7f05004c;
+        public static final int dish_item_list=0x7f05004d;
+        public static final int dish_list=0x7f050065;
+        public static final int dish_name=0x7f05004e;
+        public static final int dish_name_label=0x7f050052;
+        public static final int dish_name_label2=0x7f050058;
+        public static final int dish_name_label3=0x7f050059;
+        public static final int dish_order_list=0x7f050067;
         public static final int dish_pic_big=0x7f05003c;
-        public static final int dish_price=0x7f05004c;
+        public static final int dish_price=0x7f050051;
+        public static final int dish_price_label=0x7f050050;
         public static final int dish_price_view=0x7f050040;
         public static final int dish_recommend=0x7f05003e;
-        public static final int dish_size_name=0x7f05004f;
-        public static final int dish_size_now_price=0x7f050051;
-        public static final int dish_size_old_price=0x7f050050;
-        public static final int dish_size_radio_img=0x7f05004e;
-        public static final int dish_taste_name=0x7f050054;
-        public static final int dish_taste_radio_img=0x7f050053;
+        public static final int dish_size_label=0x7f050054;
+        public static final int dish_size_name=0x7f05005e;
+        public static final int dish_size_now_price=0x7f050060;
+        public static final int dish_size_old_price=0x7f05005f;
+        public static final int dish_size_radio_img=0x7f05005d;
+        public static final int dish_state_label=0x7f050056;
+        public static final int dish_state_label2=0x7f05005a;
+        public static final int dish_state_label3=0x7f05005b;
+        public static final int dish_taste_label=0x7f050055;
+        public static final int dish_taste_name=0x7f050063;
+        public static final int dish_taste_radio_img=0x7f050062;
         public static final int dish_taste_view=0x7f050041;
-        public static final int drawer_layout=0x7f050047;
+        public static final int dish_type_spiner=0x7f050068;
+        public static final int dish_type_text=0x7f050048;
+        public static final int drawer_layout=0x7f050049;
         public static final int dropdown=0x7f05000f;
         public static final int edit_query=0x7f050030;
         public static final int end=0x7f050013;
         public static final int expand_activities_button=0x7f050026;
         public static final int expanded_menu=0x7f05002c;
-        public static final int frame_container=0x7f050048;
+        public static final int frame_container=0x7f05004a;
         public static final int home=0x7f050014;
         public static final int homeAsUp=0x7f050005;
         public static final int icon=0x7f05002a;
         public static final int ifRoom=0x7f05000a;
         public static final int image=0x7f050027;
-        public static final int item_radiobutton=0x7f050052;
+        public static final int item_radiobutton=0x7f050061;
         public static final int listMode=0x7f050001;
         public static final int list_item=0x7f050029;
-        public static final int list_slidermenu=0x7f050049;
+        public static final int list_slidermenu=0x7f05004b;
+        public static final int menu_layout=0x7f050046;
         public static final int middle=0x7f050012;
         public static final int never=0x7f050009;
         public static final int none=0x7f050010;
         public static final int normal=0x7f050000;
+        public static final int order_control_panel=0x7f050057;
         public static final int pagertab=0x7f050045;
         public static final int progress_circular=0x7f050018;
         public static final int progress_horizontal=0x7f050019;
@@ -1100,11 +1125,10 @@ containing a value of this type.
         public static final int showCustom=0x7f050007;
         public static final int showHome=0x7f050004;
         public static final int showTitle=0x7f050006;
-        public static final int show_drawer_btn=0x7f050046;
+        public static final int show_drawer_btn=0x7f050047;
         public static final int split_action_bar=0x7f05001e;
         public static final int submit_area=0x7f050039;
         public static final int tabMode=0x7f050002;
-        public static final int textView1=0x7f050057;
         public static final int title=0x7f05002b;
         public static final int top_action_bar=0x7f050020;
         public static final int up=0x7f050021;
@@ -1165,14 +1189,18 @@ containing a value of this type.
         public static final int activity_dish_viewpager=0x7f030018;
         public static final int activity_main=0x7f030019;
         public static final int adapter_dish_item=0x7f03001a;
-        public static final int adapter_dish_price=0x7f03001b;
-        public static final int adapter_dish_taste=0x7f03001c;
-        public static final int adapter_drawer_item=0x7f03001d;
-        public static final int fragment_about=0x7f03001e;
-        public static final int fragment_dish=0x7f03001f;
-        public static final int fragment_main=0x7f030020;
-        public static final int fragment_order=0x7f030021;
-        public static final int support_simple_spinner_dropdown_item=0x7f030022;
+        public static final int adapter_dish_order=0x7f03001b;
+        public static final int adapter_dish_price=0x7f03001c;
+        public static final int adapter_dish_taste=0x7f03001d;
+        public static final int adapter_drawer_item=0x7f03001e;
+        public static final int fragment_about=0x7f03001f;
+        public static final int fragment_dish=0x7f030020;
+        public static final int fragment_main=0x7f030021;
+        public static final int fragment_order=0x7f030022;
+        public static final int fragment_order_empty=0x7f030023;
+        public static final int popup_window=0x7f030024;
+        public static final int spinner_item=0x7f030025;
+        public static final int support_simple_spinner_dropdown_item=0x7f030026;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
@@ -1216,10 +1244,14 @@ containing a value of this type.
          */
         public static final int abc_shareactionprovider_share_with_application=0x7f0a000b;
         public static final int app_name=0x7f0a000d;
-        public static final int desc_list_item_icon=0x7f0a000f;
+        public static final int choose_dish_clicked=0x7f0a0012;
+        public static final int delete=0x7f0a0010;
+        public static final int desc_list_item_icon=0x7f0a0013;
         public static final int dish_image=0x7f0a000e;
-        public static final int price=0x7f0a0010;
-        public static final int taste=0x7f0a0011;
+        public static final int dish_type=0x7f0a000f;
+        public static final int empty_char_tips=0x7f0a0011;
+        public static final int price=0x7f0a0014;
+        public static final int taste=0x7f0a0015;
     }
     public static final class style {
         /** 

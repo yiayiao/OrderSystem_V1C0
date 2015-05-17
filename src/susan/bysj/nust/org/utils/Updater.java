@@ -25,8 +25,7 @@ public class Updater
 	public Updater(Activity activity)
 	{
 		this.activity = activity;
-		myApplication = ((MyApplication) activity.getApplication());
-		myApplication.setFinalDb(FinalDb.create(activity));
+		myApplication = (MyApplication) activity.getApplication();
 		finalDb = myApplication.getFinalDb();
 		serverUtils = new ServerUtils(myApplication.getServerUrl());
 	}
@@ -122,7 +121,7 @@ public class Updater
 		protected void onPostExecute(Void result)
 		{
 			super.onPostExecute(result);
-			((MainActivity) activity).refresh();
+			((MainActivity) activity).refreshData();
 		}
 
 		@Override

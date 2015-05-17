@@ -18,7 +18,7 @@ public class DishType implements IGetVersionAndId
 
 	private String version;
 
-	private String dishName;
+	private String typeName;
 
 	public int getServerId()
 	{
@@ -33,16 +33,6 @@ public class DishType implements IGetVersionAndId
 	public void setDishTypeId(int dishTypeId)
 	{
 		this.dishTypeId = dishTypeId;
-	}
-
-	public String getDishName()
-	{
-		return dishName;
-	}
-
-	public void setDishName(String dishName)
-	{
-		this.dishName = dishName;
 	}
 
 	public int getId()
@@ -63,6 +53,16 @@ public class DishType implements IGetVersionAndId
 	public void setVersion(String version)
 	{
 		this.version = version;
+	}
+
+	public String getTypeName()
+	{
+		return typeName;
+	}
+
+	public void setTypeName(String typeName)
+	{
+		this.typeName = typeName;
 	}
 
 }

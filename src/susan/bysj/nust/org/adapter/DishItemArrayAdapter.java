@@ -40,7 +40,7 @@ public class DishItemArrayAdapter extends ArrayAdapter<Dish>
 		Dish dishItem = getItem(position);
 		dishImage.setImageResource(R.drawable.huiguorou);
 		dishName.setText(dishItem.getDishName());
-		dishPrice.setText(dishItem.getNowPrice() + "");
+		dishPrice.setText("￥" + dishItem.getNowPrice());
 		dishDesc.setText(dishItem.getDetail());
 
 		return dishItemView;
