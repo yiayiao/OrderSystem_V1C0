@@ -38,16 +38,20 @@ import android.widget.TextView;
 @SuppressLint("NewApi")
 public class MainActivity extends FragmentActivity
 {
+	private static final String OrderListFragment = null;
 	private DrawerLayout mDrawerLayout;
 	private ListView mDrawerList;
 	private Fragment[] fragments;
 	private int positionNow = -1;
 	private MyApplication myApplication;
 	private Button showDrawerButton;
-	private LinearLayout menuLayout;
 	private PopupWindow mPopupWindow;
 	private TextView dishTypeText;
 	private FinalDb finalDb;
+	private TextView totalPrice;
+
+	private View menuLayout;
+	private View[] menuLayouts;
 
 	private List<String> dishTypeList;
 	private Hashtable<String, Integer> dishTypeCash;
@@ -67,15 +71,21 @@ public class MainActivity extends FragmentActivity
 		showDrawerButton = (Button) findViewById(R.id.show_drawer_btn);
 		showDrawerButton.getBackground().setAlpha(120);
 		fragments = new Fragment[3];
-		menuLayout = (LinearLayout) findViewById(R.id.menu_layout);
 		dishTypeText = (TextView) findViewById(R.id.dish_type_text);
+		totalPrice = (TextView) findViewById(R.id.total_price);
+
+		menuLayout = (View) findViewById(R.id.menu_layout);
+		menuLayouts = new View[3];
+		menuLayouts[0] = (View) findViewById(R.id.menu_layout_0);
+		menuLayouts[1] = (View) findViewById(R.id.menu_layout_1);
+		menuLayouts[2] = (View) findViewById(R.id.menu_layout_2);
 
 		// 更新菜品信息
 		getActionBar().hide();
 		new Updater(this).update();
-		initDrawerView();
+		initDrawerView(); // 初始化抽屉式布局
+		initPopupView(); // 初始化菜单列表的popupView
 		initAsyncImageLoader();
-		initPopupView();
 	}
 
 	// ## BEGIN : 初始化菜单弹出窗口
@@ -207,12 +217,18 @@ public class MainActivity extends FragmentActivity
 
 	private void displayView(int position)
 	{
+		Log.d("OrderSystem", "now show Fragment: " + position);
 		if (position == positionNow)
 		{
 			mDrawerLayout.closeDrawer(mDrawerList);
 			return;
 		}
 		positionNow = position;
+
+		for (int i = 0; i < menuLayouts.length; i++)
+		{
+			menuLayouts[i].setVisibility(i == position ? View.VISIBLE : View.GONE);
+		}
 
 		Fragment fragment = getFragment(position);
 		if (fragment != null)
@@ -242,7 +258,10 @@ public class MainActivity extends FragmentActivity
 			case 0:
 				return (this.fragments[position] = new DishListFragment());
 			case 1:
-				return (this.fragments[position] = new OrderListFragment());
+				this.fragments[position] = new OrderListFragment();
+				((OrderListFragment) this.fragments[position]).setMainActivity(this);
+				//this.totalPrice.setText("￥" + 0.0);
+				return this.fragments[position];
 			case 2:
 				return (this.fragments[position] = new AboutFragment());
 		}
@@ -260,7 +279,7 @@ public class MainActivity extends FragmentActivity
 	private void initAsyncImageLoader()
 	{
 		AsyncImageLoader loader = new AsyncImageLoader(getApplicationContext());
-		loader.setCache2File(true);  // 将图片缓存至外部文件中
+		loader.setCache2File(true); // 将图片缓存至外部文件中
 		loader.setCachedDir(this.getCacheDir().getAbsolutePath()); // 设置外部缓存文件夹
 		myApplication.setAsyncImageLoader(loader);
 	}
@@ -277,6 +296,11 @@ public class MainActivity extends FragmentActivity
 
 		// 刷新菜单列表
 		((DishListFragment) this.fragments[0]).refreshDishList(-1);
+	}
+
+	public void setTotalPrice(float price)
+	{
+		this.totalPrice.setText("￥" + price);
 	}
 
 }

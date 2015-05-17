@@ -86,11 +86,11 @@
         android:layout_alignTop="@+id/dish_img"
         android:layout_marginRight="5dp"
         android:layout_toRightOf="@+id/dish_img"
-        android:background="#E0E0E0"
+        android:background="#E8E8E8"
         android:visibility="gone" >
 
         <TextView
-            android:id="@+id/dish_name_label2"
+            android:id="@+id/dish_name_label_s"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -101,17 +101,17 @@
             android:textSize="15sp" />
 
         <TextView
-            android:id="@+id/dish_name_label3"
+            android:id="@+id/dish_name_label2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/dish_name_label2"
-            android:layout_toRightOf="@+id/dish_name_label2"
+            android:layout_alignBottom="@+id/dish_name_label_s"
+            android:layout_toRightOf="@+id/dish_name_label_s"
             android:textColor="#444444"
             android:text="回锅肉"
             android:textSize="17sp" />
 
         <TextView
-            android:id="@+id/dish_state_label2"
+            android:id="@+id/dish_state_label_s"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -122,22 +122,23 @@
             android:textSize="15sp" />
 
         <TextView
-            android:id="@+id/dish_state_label3"
+            android:id="@+id/dish_state_label2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/dish_state_label2"
-            android:layout_toRightOf="@+id/dish_state_label2"
+            android:layout_alignBottom="@+id/dish_state_label_s"
+            android:layout_toRightOf="@+id/dish_state_label_s"
             android:text="待提交"
             android:textColor="@color/red"
             android:textSize="17sp" />
 
-        <Button
+        <TextView
             android:id="@+id/del_order_btn"
             android:layout_width="60dp"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:background="#FF6666"
             android:text="@string/delete"
+            android:gravity="center"
             android:textSize="18sp" />
     </RelativeLayout>
 

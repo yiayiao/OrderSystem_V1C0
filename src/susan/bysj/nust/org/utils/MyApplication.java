@@ -29,6 +29,18 @@ public class MyApplication extends Application
 		orderList.add(orderDish);
 	}
 
+	public void removeOrder(OrderDish orderDish)
+	{
+		for (OrderDish orderDish2 : this.orderList)
+		{
+			if (orderDish2.getDishId() == orderDish.getDishId())
+			{
+				this.orderList.remove(orderDish2);
+				break;
+			}
+		}
+	}
+
 	public FinalDb getFinalDb()
 	{
 		return finalDb;

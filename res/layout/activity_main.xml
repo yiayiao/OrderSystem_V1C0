@@ -3,10 +3,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/menu_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:background="@color/menu_background" >
 
         <Button
@@ -16,20 +16,64 @@
             android:layout_margin="6dp"
             android:background="@drawable/ic_menu" />
 
-        <TextView
-            android:id="@+id/dish_type_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:layout_marginLeft="20dp"
-            android:clickable="true"
-            android:drawableRight="@drawable/ic_spinner"
-            android:textStyle="bold"
-            android:textColor="#4f4f4f"
-            android:text="@string/dish_type"
-            android:textSize="18sp" />
-    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/menu_layout_0"
+            android:layout_toRightOf="@+id/show_drawer_btn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/dish_type_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:clickable="true"
+                android:drawableRight="@drawable/ic_spinner"
+                android:gravity="center"
+                android:text="@string/dish_type"
+                android:textColor="#4f4f4f"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/menu_layout_1"
+            android:layout_toRightOf="@+id/show_drawer_btn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal" >
+            
+            <TextView
+                android:id="@+id/total_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:layout_marginRight="10dp"
+                android:textSize="18sp"
+                android:text="￥0.0" />
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+				android:layout_toLeftOf="@+id/total_price"
+				android:layout_alignBottom="@+id/total_price"
+				android:textSize="15sp"
+                android:text="总价：" />
+        </RelativeLayout>
+        
+        <LinearLayout
+            android:id="@+id/menu_layout_2"
+            android:layout_toRightOf="@+id/show_drawer_btn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal" >
+
+
+        </LinearLayout>
+    </RelativeLayout>
 
     <android.support.v4.widget.DrawerLayout
         android:id="@+id/drawer_layout"

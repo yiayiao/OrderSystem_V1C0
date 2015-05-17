@@ -180,6 +180,7 @@ public class DishViewPagerActivity extends Activity
 				orderDish.setDishId(dish.getDishId());
 				orderDish.setDishSizeId(dishSizeLastChoosed.getDishSizeId());
 				orderDish.setDishTasteId(dishTasteLastChoosed.getDishTasteId());
+				orderDish.setNowPrice(dishSizeLastChoosed.getNowPrice());
 				orderDish.setNum(1);
 				myApplication.addOrder(orderDish);
 				
